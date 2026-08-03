@@ -15,7 +15,9 @@ include_once __DIR__ . '/d1g1RegisterStylesScripts.php';
 include_once __DIR__ . '/d1g1ThemeFunctions.php';
 include_once __DIR__ . '/d1g1ThemeSetup.php';
 include_once __DIR__ . '/d1g1widgets.php';
-include_once __DIR__ . '/d1g1CustomGuttenbergBlocks.php';
+include_once __DIR__ . '/d1g1Icons.php';
+include_once __DIR__ . '/d1g1AcfBlocks.php';
+include_once __DIR__ . '/d1g1ContactForm.php';
 
 //theme builder
 include_once __DIR__ . '/builder/include.php';

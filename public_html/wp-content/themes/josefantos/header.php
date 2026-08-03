@@ -27,4 +27,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php get_template_part( 'parts/theme/header-content' ) ?>
 
-<main id="panel" class="panel slideout-panel slideout-panel-right overflow-x-hidden" itemscope itemprop="mainEntityOfPage">
+<?php get_template_part( 'parts/theme/mobile-menu' ) ?>
+
+<main id="panel" class="overflow-x-hidden" itemscope itemprop="mainEntityOfPage">

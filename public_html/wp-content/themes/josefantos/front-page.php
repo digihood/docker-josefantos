@@ -1,26 +1,24 @@
-<?php 
+<?php
 /**
  * Šablona pro zobrazení domácí stránky
+ *
+ * Domácí stránka je složená z ACF bloků, které si container řeší samy.
+ *
+ * @author Digihood
  */
 
-get_header(); 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
-get_template_part('parts/page', 'banner' );
+get_header();
 
-d1g1B::container(true);
+if ( have_posts() ) :
+    while ( have_posts() ) : the_post();
 
-	d1g1B::cell( 12, 12, 12 );
+        the_content();
 
-		if (have_posts()) : while (have_posts()) : the_post(); 
+    endwhile;
+endif;
 
-			get_template_part( 'parts/repeats/loop', 'page' ); 
-
-		endwhile; endif; 
-		
-		echo d1g1TypographyDemo::demo(); 
-
-	d1g1B::end_cell( );
-
-d1g1B::end_container();
-
-get_footer(); 
+get_footer();

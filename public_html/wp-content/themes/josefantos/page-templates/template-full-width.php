@@ -3,18 +3,25 @@
 Template Name: Stránka na celou šířku
 */
 
+/**
+ * Šablona pro stránky složené z ACF bloků.
+ * Bloky si container i odsazení řeší samy, obsah proto nic neobaluje.
+ *
+ * @author Digihood
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-get_header(); 
+get_header();
 
-d1g1B::container(true);
+if ( have_posts() ) :
+    while ( have_posts() ) : the_post();
 
-	if (have_posts()) : while (have_posts()) : the_post(); 
-		get_template_part( 'parts/repeats/loop', 'page' ); 
-	endwhile; endif; 
+        the_content();
 
-d1g1B::end_container();
+    endwhile;
+endif;
 
-get_footer(); 
+get_footer();

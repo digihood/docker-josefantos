@@ -2,6 +2,10 @@
 
 define( 'WP_CACHE', false ); // Vypnuty page cache pro lokalni vyvoj
 
+// true = styly a scripty se berou z Vite dev serveru (npm run dev)
+// false = nacitaji se ze zbuildeneho assets-minified (npm run build)
+define( 'VITE_DEVELOPMENT', false );
+
 /**
  * The base configuration for WordPress
  *

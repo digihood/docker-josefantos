@@ -14,16 +14,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 				
 		<footer id="footerwrap" class="footer" itemscope itemtype="http://schema.org/WPFooter">
-				
-			<?php get_template_part( 'parts/theme/sub-footer' ); ?>		
 
-			<?php get_template_part( 'parts/theme/colophon' ); ?>	
-							
+			<?php get_template_part( 'parts/theme/colophon' ); ?>
+
 		</footer>
 
 	</main>
-
-	<?php get_template_part('parts/theme/mobile-menu'); ?>
 
 	<?php wp_footer(); ?>
 	

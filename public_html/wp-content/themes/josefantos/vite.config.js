@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
     plugins: [],
-    base: '/wp-content/themes/digihood-vite/assets-minified/',
+    base: '/wp-content/themes/josefantos/assets-minified/',
     build: {
         manifest: true,
         minify: true,
@@ -11,6 +11,7 @@ export default defineConfig({
             input: {
                 'app': __dirname+'/assets/scripts/js/app.js',
                 'main': __dirname+'/assets/styles/style.css',
+                'fonts': __dirname+'/assets/styles/fonts.css',
                 'slideout-menu': __dirname+'/assets/styles/specific-css/slideout-menu.css', 
                 'admin': __dirname+'/assets/scripts/specific-scripts/admin.js',
                 'admin-css': __dirname + '/assets/styles/specific-css/admin.css',

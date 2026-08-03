@@ -1,6 +1,6 @@
 {
   "assets/scripts/js/app.js": {
-    "file": "scripts/scripts.js",
+    "file": "scripts/app.js",
     "isEntry": true,
     "src": "assets/scripts/js/app.js"
   },
@@ -19,10 +19,10 @@
     "isEntry": true,
     "src": "assets/scripts/specific-scripts/cookiebanner.js"
   },
-  "assets/scripts/specific-scripts/lazyloading.js": {
-    "file": "scripts/lazyloading.js",
+  "assets/styles/fonts.css": {
+    "file": "styles/fonts.css",
     "isEntry": true,
-    "src": "assets/scripts/specific-scripts/lazyloading.js"
+    "src": "assets/styles/fonts.css"
   },
   "assets/styles/specific-css/admin.css": {
     "file": "styles/admin.css",
@@ -34,14 +34,54 @@
     "isEntry": true,
     "src": "assets/styles/specific-css/cookiebanner.css"
   },
-  "assets/styles/specific-css/lazyloading.css": {
-    "file": "styles/lazyloading.css",
+  "assets/styles/specific-css/slideout-menu.css": {
+    "file": "styles/slideout-menu.css",
     "isEntry": true,
-    "src": "assets/styles/specific-css/lazyloading.css"
+    "src": "assets/styles/specific-css/slideout-menu.css"
   },
   "assets/styles/style.css": {
     "file": "styles/style.css",
     "isEntry": true,
     "src": "assets/styles/style.css"
+  },
+  "node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-ext-wght-normal.woff2": {
+    "file": "fonts/bricolage-grotesque-latin-ext-wght-normal.woff2",
+    "src": "node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-ext-wght-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2": {
+    "file": "fonts/bricolage-grotesque-latin-wght-normal.woff2",
+    "src": "node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-vietnamese-wght-normal.woff2": {
+    "file": "fonts/bricolage-grotesque-vietnamese-wght-normal.woff2",
+    "src": "node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-vietnamese-wght-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-ext-wght-normal.woff2": {
+    "file": "fonts/dm-sans-latin-ext-wght-normal.woff2",
+    "src": "node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-ext-wght-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2": {
+    "file": "fonts/dm-sans-latin-wght-normal.woff2",
+    "src": "node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-cyrillic-wght-normal.woff2": {
+    "file": "fonts/jetbrains-mono-cyrillic-wght-normal.woff2",
+    "src": "node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-cyrillic-wght-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-greek-wght-normal.woff2": {
+    "file": "fonts/jetbrains-mono-greek-wght-normal.woff2",
+    "src": "node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-greek-wght-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-normal.woff2": {
+    "file": "fonts/jetbrains-mono-latin-ext-wght-normal.woff2",
+    "src": "node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2": {
+    "file": "fonts/jetbrains-mono-latin-wght-normal.woff2",
+    "src": "node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2"
+  },
+  "node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-vietnamese-wght-normal.woff2": {
+    "file": "fonts/jetbrains-mono-vietnamese-wght-normal.woff2",
+    "src": "node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-vietnamese-wght-normal.woff2"
   }
 }

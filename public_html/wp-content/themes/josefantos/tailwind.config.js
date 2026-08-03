@@ -11,65 +11,101 @@ export default {
     container: { // Nastavení .containeru
       center: true,
       padding: { // padding containeru
-        DEFAULT: '1rem',
-        // sm: '2rem',
-        // lg: '4rem',
-        // xl: '5rem',
-        // '2xl': '6rem',
+        DEFAULT: '1.5rem',
+        lg: '3rem',
+      },
+      screens: { // container se zastaví na 1280px (max-w-7xl z návrhu)
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1280px',
       },
     },
-    screens: { // Šířka containeru
+    screens: { // Breakpointy
         'sm': '640px',
         'md': '768px',
         'lg': '1024px',
         'xl': '1280px',
-        '2xl': '1640px',
+        '2xl': '1536px',
     },
-    colors: { // Nastavení barev šablony
-      primary: '#1fb6ff',
-      secondary: '#7e5bef',
-      orange: '#ff7849',
-      green: '#13ce66',
-      yellow: '#ffc82c',
-      black: '#000',
-      white: '#fff',
-      gray: '#d3dce6',
+    colors: { // Design tokeny z Figma Make
+      transparent: 'transparent',
+      current: 'currentColor',
+      background: '#ffffff',
+      foreground: '#0a0a0a',
+      primary: {
+        DEFAULT: '#4169e1',
+        foreground: '#ffffff',
+      },
+      muted: {
+        DEFAULT: '#f4f4f4',
+        foreground: '#717182',
+      },
+      border: 'rgba(10, 10, 10, 0.08)',
+      white: '#ffffff',
+      black: '#0a0a0a',
     },
-    fontSize: { // Nastavení velikostí textů šablony - ['font-size','line-height']
-      sm: ['14px', '20px'],
-      base: ['16px', '24px'],
-      lg: ['20px', '28px'],
-      xl: ['24px', '32px'],
+    borderRadius: { // Design nepoužívá zaoblení (--radius: 0px)
+      none: '0px',
+      DEFAULT: '0px',
+      full: '9999px',
+    },
+    fontFamily: { // Fonty z Figma Make
+      sans: ['DM Sans Variable', 'sans-serif'],
+      display: ['Bricolage Grotesque Variable', 'sans-serif'],
+      mono: ['JetBrains Mono Variable', 'monospace'],
+    },
+    fontSize: { // ['font-size','line-height']
+      '2xs': ['10px', '1.4'],
+      xs: ['11px', '1.4'],
+      sm: ['14px', '1.6'],
+      base: ['15px', '1.75'],
+      md: ['16px', '1.7'],
+      lg: ['18px', '1.6'],
+      xl: ['20px', '1.5'],
+      '2xl': ['24px', '1.3'],
+      // Nadpisy — clamp odpovídá responzivní typografii z návrhu
       h1: {
-        sm: ['40px', '1.2'],
-        md: '50px',
-        lg: '60px',
+        sm: ['clamp(64px, 13vw, 196px)', '0.88'],
+        md: ['clamp(64px, 13vw, 196px)', '0.88'],
+        lg: ['clamp(64px, 13vw, 196px)', '0.88'],
       },
       h2: {
-        sm: '30px',
-        md: '40px',
-        lg: '50px',
+        sm: ['36px', '1.05'],
+        md: ['44px', '1.05'],
+        lg: ['48px', '1.05'],
       },
       h3: {
-        sm: '25px',
-        md: '35px',
-        lg: '45px',
+        sm: ['22px', '1.25'],
+        md: ['24px', '1.25'],
+        lg: ['24px', '1.25'],
       },
       h4: {
-        sm: '20px',
-        md: '25px',
-        lg: '30px',
+        sm: ['18px', '1.35'],
+        md: ['20px', '1.35'],
+        lg: ['20px', '1.35'],
       },
       h5: {
-        sm: '18px',
-        md: '20px',
-        lg: '22px',
-      }
+        sm: ['16px', '1.4'],
+        md: ['17px', '1.4'],
+        lg: ['18px', '1.4'],
+      },
+      // Velký kontaktní nadpis
+      contact: ['clamp(42px, 7vw, 110px)', '0.92'],
     },
-    fontFamily: { // Nastavení fontů šablony
-      sans: ['Inter Variable', 'sans-serif'],
+    letterSpacing: {
+      tighter: '-0.03em',
+      tight: '-0.02em',
+      normal: '0',
+      wide: '0.05em',
+      wider: '0.18em',
+      widest: '0.22em',
     },
     extend: {
+      maxWidth: {
+        content: '640px',
+      },
       gap: { // Defaultní mezera mezi řádky/sloupci v Gridu
         'sm': '10px',
         'md': '20px',
@@ -82,4 +118,3 @@ export default {
     require('tailwindcss-animated'), // https://github.com/new-data-services/tailwindcss-animated
   ],
 }
-

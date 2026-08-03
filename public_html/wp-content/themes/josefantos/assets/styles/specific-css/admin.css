@@ -2,12 +2,12 @@
 .wp-block {
     max-width: none;
 }
- 
+
 /* Width of "wide" blocks */
 .wp-block[data-align="wide"] {
     max-width: 1080px;
 }
- 
+
 /* Width of "full-wide" blocks */
 .wp-block[data-align="full"] {
     max-width: none;
@@ -17,4 +17,31 @@
     .wp-block {
         padding: 0 30px;
     }
+}
+
+/* Náhled sekcí v editoru — nezvolený blok ukazuje jen svůj nadpis,
+   po kliknutí ACF vymění náhled za formulář (mode: auto) */
+.d1g1-block-preview {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 18px 22px;
+    border: 1px solid #d7dade;
+    border-left: 4px solid #4169e1;
+    background: #fbfbfc;
+}
+
+.d1g1-block-preview__label {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #717182;
+}
+
+.d1g1-block-preview__title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #0a0a0a;
 }

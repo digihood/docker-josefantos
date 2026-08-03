@@ -165,17 +165,21 @@
 
     //init on load
     jQuery(window).on( "load", function() {
-        var slideout = new Slideout({
-            'panel': document.getElementById('panel'),
-            'menu': document.getElementById('menu'),
-            'padding': 256,
-            'side': 'right',
-            'tolerance': 70
-        });
 
-        $('.js-slideout-toggle, .slideout-menu .close-button').on('click', function(){
-            slideout.toggle();
-        }); 
+        //slideout menu se používá jen pokud je v šabloně přítomný
+        if ( document.getElementById('menu') && typeof Slideout !== 'undefined' ) {
+            var slideout = new Slideout({
+                'panel': document.getElementById('panel'),
+                'menu': document.getElementById('menu'),
+                'padding': 256,
+                'side': 'right',
+                'tolerance': 70
+            });
+
+            $('.js-slideout-toggle, .slideout-menu .close-button').on('click', function(){
+                slideout.toggle();
+            });
+        }
 
 
         (function ($) {
@@ -537,7 +541,81 @@
 
     // Custom project code
     $(document).ready(function () {
-        // Add your code here :)
+
+        /* Záhlaví — pozadí a linka po odscrollování
+        ========================================================*/
+        var $header = $('#header-content');
+
+        function updateHeader() {
+            $header.toggleClass('bg-background/95 backdrop-blur-md !border-border', $(window).scrollTop() > 50);
+        }
+
+        if ( $header.length ) {
+            updateHeader();
+            $(window).on('scroll', updateHeader);
+        }
+
+        /* Mobilní menu
+        ========================================================*/
+        $('[data-menu-toggle]').on('click', function () {
+            var expanded = $(this).attr('aria-expanded') === 'true';
+
+            $(this).attr('aria-expanded', !expanded);
+            $('[data-menu-icon="open"]', this).toggleClass('hidden', !expanded === true);
+            $('[data-menu-icon="close"]', this).toggleClass('hidden', expanded);
+            $('#mobile-menu').toggleClass('hidden', expanded);
+        });
+
+        //po kliknutí na položku menu panel zavřeme
+        $('#mobile-menu').on('click', 'a', function () {
+            $('[data-menu-toggle]').attr('aria-expanded', 'false');
+            $('[data-menu-icon="open"]').removeClass('hidden');
+            $('[data-menu-icon="close"]').addClass('hidden');
+            $('#mobile-menu').addClass('hidden');
+        });
+
+        /* Rozklikávací služby
+        ========================================================*/
+        $('[data-service-toggle]').on('click', function () {
+            var $item = $(this).closest('[data-service]');
+            var open  = $item.hasClass('is-open');
+
+            $item.toggleClass('is-open', !open);
+            $(this).attr('aria-expanded', !open);
+            $('[data-service-icon]', this).toggleClass('rotate-180', !open);
+            $('[data-service-panel]', $item).slideToggle(300);
+        });
+
+        /* Kontaktní formulář
+        ========================================================*/
+        $('[data-contact-form]').on('submit', function (e) {
+            e.preventDefault();
+
+            var $form    = $(this);
+            var $button  = $('[data-contact-submit]', $form);
+            var $error   = $('[data-contact-error]', $form);
+            var original = $button.text();
+
+            $error.addClass('hidden').text('');
+            $button.prop('disabled', true).text($button.data('sending'));
+
+            $.post(globaldata.ajaxurl, $form.serialize())
+                .done(function (response) {
+                    if (response && response.success) {
+                        $form.addClass('hidden');
+                        $('[data-contact-success]').removeClass('hidden').addClass('flex');
+                    } else {
+                        var message = (response && response.data && response.data.message) || '';
+                        $error.text(message).removeClass('hidden');
+                        $button.prop('disabled', false).text(original);
+                    }
+                })
+                .fail(function () {
+                    $error.text($form.data('error')).removeClass('hidden');
+                    $button.prop('disabled', false).text(original);
+                });
+        });
+
     });
     
 })(jQuery);
