@@ -21,7 +21,7 @@ if ( ! $label && ! $title ) {
     return;
 }
 ?>
-<div class="intersect:animate-fade-up flex items-end justify-between gap-8 mb-14 pb-6 border-b border-border">
+<div class="intersect:animate-fade-up intersect-once flex items-end justify-between gap-8 mb-14 pb-6 border-b border-border">
 
     <div>
         <?php if ( $label ) : ?>

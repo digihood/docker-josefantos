@@ -248,17 +248,6 @@
 
     $(document).ready(function () {
         var consent_cookie = getCookie('cc_cookie');
-        if (!consent_cookie) {
-            gtag('consent', 'default', {
-                'functional_storage': 'granted',
-                'security_storage': 'granted',
-                'analytics_storage': 'denied',
-                'personalization_storage': 'denied',
-                'ad_storage': 'denied',
-                'ad_user_data': 'denied',
-                'ad_personalization': 'denied'
-            });
-        }
 
         var cookieconsent = initCookieConsent();
         cookieconsent.run({
@@ -267,7 +256,7 @@
             autorun: true,
             delay: 0,
             autoclear_cookies: true,
-            theme_css: globaldata.theme_url + '/assets/styles/specific-css/cookiebanner.css',
+            theme_css: globaldata.cookiecss,
             gui_options: {
                 consent_modal: {
                     layout: 'box',               // box/cloud/bar 
@@ -586,34 +575,12 @@
             $('[data-service-panel]', $item).slideToggle(300);
         });
 
-        /* Kontaktní formulář
+        /* Kontaktní formulář — po úspěšném odeslání přes Contact Form 7
+           se formulář skryje a ukáže se potvrzení z návrhu
         ========================================================*/
-        $('[data-contact-form]').on('submit', function (e) {
-            e.preventDefault();
-
-            var $form    = $(this);
-            var $button  = $('[data-contact-submit]', $form);
-            var $error   = $('[data-contact-error]', $form);
-            var original = $button.text();
-
-            $error.addClass('hidden').text('');
-            $button.prop('disabled', true).text($button.data('sending'));
-
-            $.post(globaldata.ajaxurl, $form.serialize())
-                .done(function (response) {
-                    if (response && response.success) {
-                        $form.addClass('hidden');
-                        $('[data-contact-success]').removeClass('hidden').addClass('flex');
-                    } else {
-                        var message = (response && response.data && response.data.message) || '';
-                        $error.text(message).removeClass('hidden');
-                        $button.prop('disabled', false).text(original);
-                    }
-                })
-                .fail(function () {
-                    $error.text($form.data('error')).removeClass('hidden');
-                    $button.prop('disabled', false).text(original);
-                });
+        document.addEventListener('wpcf7mailsent', function () {
+            $('[data-contact-form]').addClass('hidden');
+            $('[data-contact-success]').removeClass('hidden').addClass('flex');
         });
 
     });

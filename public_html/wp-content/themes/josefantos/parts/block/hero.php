@@ -18,10 +18,10 @@ $brands      = get_field( 'hero_brands' );
 $cta_text    = get_field( 'hero_cta_text' );
 $cta_anchor  = get_field( 'hero_cta_anchor' );
 ?>
-<section id="hero" class="container min-h-screen flex flex-col justify-end pb-16 pt-28">
+<section id="hero" class="container flex flex-col pb-16 pt-24">
 
     <?php if ( $badge ) : ?>
-        <div class="intersect:animate-fade-up mb-14">
+        <div class="intersect:animate-fade-up intersect-once mb-14">
             <span class="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1.5 border border-primary text-primary">
                 <?= esc_html( $badge ) ?>
             </span>
@@ -29,7 +29,7 @@ $cta_anchor  = get_field( 'hero_cta_anchor' );
     <?php endif; ?>
 
     <?php if ( $name_first || $name_second ) : ?>
-        <h1 class="intersect:animate-fade-up">
+        <h1 class="intersect:animate-fade-up intersect-once">
             <?php if ( $prefix ) : ?>
                 <span class="block font-mono text-[clamp(12px,1.4vw,20px)] font-normal text-muted-foreground tracking-wider uppercase mb-2 leading-none">
                     <?= esc_html( $prefix ) ?>
@@ -47,10 +47,10 @@ $cta_anchor  = get_field( 'hero_cta_anchor' );
     <?php endif; ?>
 
     <?php if ( $perex || $brands || $cta_text ) : ?>
-        <div class="intersect:animate-fade-up flex flex-col md:flex-row md:items-end justify-between gap-8 border-t border-border pt-8 mt-10">
+        <div class="intersect:animate-fade-up intersect-once flex flex-col md:flex-row md:items-end justify-between gap-8 border-t border-border pt-8 mt-10">
 
             <?php if ( $perex ) : ?>
-                <div class="max-w-content text-lg md:text-xl text-muted-foreground [&_p]:text-lg [&_p:last-child]:mb-0 md:[&_p]:text-xl [&_strong]:text-foreground [&_strong]:font-normal [&_em]:not-italic [&_em]:text-primary [&_em]:font-semibold">
+                <div class="max-w-content text-lg md:text-xl text-muted-foreground [&_p]:text-lg [&_p:last-child]:mb-0 md:[&_p]:text-xl [&_strong]:text-foreground [&_strong]:font-normal [&_em]:not-italic [&_em]:text-primary [&_em]:font-semibold [&_a]:text-primary [&_a]:font-semibold [&_a:hover]:underline [&_a:hover]:underline-offset-4">
                     <?= wp_kses_post( $perex ) ?>
                 </div>
             <?php endif; ?>
@@ -72,7 +72,7 @@ $cta_anchor  = get_field( 'hero_cta_anchor' );
                     <a href="<?= esc_url( $cta_anchor ?: '#focus' ) ?>"
                        class="group flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors">
                         <?= esc_html( $cta_text ) ?>
-                        <?= d1g1Icons::get( 'arrow-up-right', 'w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' ) ?>
+                        <?= d1g1Icons::get( 'arrow-down-right', 'w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5' ) ?>
                     </a>
                 <?php endif; ?>
 

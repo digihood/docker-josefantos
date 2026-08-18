@@ -20,7 +20,6 @@ if( ! class_exists( 'sendEmaild1g1' ) )
     public function __construct(){
       add_filter( 'wp_mail_from_name', [$this, 'my_mail_from_name'] );
       add_filter( 'wp_mail_from', [$this, 'my_mail_from'] );
-      add_filter( 'wp_mail', [$this, 'change_headers'] );
       add_action( 'init', [$this,'email_test'] );
     }
 
@@ -47,17 +46,6 @@ if( ! class_exists( 'sendEmaild1g1' ) )
       return d1g1Settings::email_from_d1g1();
     }
 
-    function change_headers($args) {
-
-      $mailheader = "Reply-To: produkce@gramon.cz\r\n";
-      $mailheader .= "MIME-Version: 1.0\r\n";
-      $mailheader .= "Content-Type: text/html; charset=utf-8\r\n";
-
-      $args['headers'] = $mailheader;
-
-      return $args;
-
-    }
 
     /*
     wraps email body into prestyled html content

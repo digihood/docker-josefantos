@@ -15,6 +15,9 @@ if( ! class_exists( 'd1g1RegisterStylesScripts' ) )
 {
 	class d1g1RegisterStylesScripts
 	{
+    // Měřicí ID Google Analytics (gtag.js)
+    const GA_ID = 'G-Z9KS0FD0TS';
+
     private $styles_directory = '/assets-minified/styles';
     private $scripts_directory = '/assets-minified/scripts';
     private $specific_styles_directory = '/assets-minified/styles';
@@ -65,10 +68,13 @@ if( ! class_exists( 'd1g1RegisterStylesScripts' ) )
 
       // Register main stylesheet
       if (defined('VITE_DEVELOPMENT') && VITE_DEVELOPMENT != true) {
-        wp_enqueue_style( 'main-css', get_template_directory_uri() . $this->styles_directory . '/style.css', array());
+        $maincsstime = filemtime( get_stylesheet_directory() . $this->styles_directory . '/style.css');
+        wp_enqueue_style( 'main-css', get_template_directory_uri() . $this->styles_directory . '/style.css', array(), $maincsstime);
       }
-      wp_enqueue_style( 'fonts', get_template_directory_uri() . $this->styles_directory . '/fonts.css', array());
-      wp_enqueue_style( 'slideout-menu', get_template_directory_uri() . $this->specific_styles_directory . '/slideout-menu.css', array());
+      $fontstime = filemtime( get_stylesheet_directory() . $this->styles_directory . '/fonts.css');
+      wp_enqueue_style( 'fonts', get_template_directory_uri() . $this->styles_directory . '/fonts.css', array(), $fontstime);
+      $slideouttime = filemtime( get_stylesheet_directory() . $this->specific_styles_directory . '/slideout-menu.css');
+      wp_enqueue_style( 'slideout-menu', get_template_directory_uri() . $this->specific_styles_directory . '/slideout-menu.css', array(), $slideouttime);
 
       // Register javacript
       $apptime = filemtime( get_stylesheet_directory() . $this->scripts_directory . '/app.js');
@@ -82,6 +88,8 @@ if( ! class_exists( 'd1g1RegisterStylesScripts' ) )
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
         'home_url' => home_url( ),
         'theme_url' => get_stylesheet_directory_uri( ),
+        // styly cookie lišty si načítá knihovna sama, cesta musí respektovat VITE_DEVELOPMENT
+        'cookiecss' => get_template_directory_uri() . $this->specific_styles_directory . '/cookiebanner.css',
         'title' => __('Náš web používá cookies', 'digi'),
         'cookiemaintitle' => __('Informace o používání souborů cookies', 'digi'),
         'primarybtn_text' => __('Přijmout vše', 'digi'),
@@ -115,6 +123,15 @@ if( ! class_exists( 'd1g1RegisterStylesScripts' ) )
       $apptime = filemtime( get_stylesheet_directory() . $this->specific_scripts_directory . '/cookiebanner.js'); 
       wp_enqueue_script( 'cookiebanner', get_template_directory_uri() . $this->specific_scripts_directory  . '/cookiebanner.js', array( 'jquery' ), $apptime, true );
       
+      // Google Analytics — gtag.js se stahuje asynchronně, náš snippet plní dataLayer
+      wp_enqueue_script( 'gtag', 'https://www.googletagmanager.com/gtag/js?id=' . self::GA_ID, array(), null, array( 'strategy' => 'async', 'in_footer' => true ) );
+
+      $analyticstime = filemtime( get_stylesheet_directory() . $this->specific_scripts_directory . '/analytics.js');
+      wp_enqueue_script( 'analytics', get_template_directory_uri() . $this->specific_scripts_directory . '/analytics.js', array(), $analyticstime, true );
+      wp_localize_script( 'analytics', 'd1g1Analytics', array(
+        'id' => self::GA_ID,
+      ));
+
       // Comment reply script for threaded comments
       if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
         wp_enqueue_script( 'comment-reply' );

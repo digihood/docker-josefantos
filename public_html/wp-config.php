@@ -2,6 +2,10 @@
 
 define( 'WP_CACHE', false ); // Vypnuty page cache pro lokalni vyvoj
 
+// V Dockeru se lisi vlastnik souboru (host) od uzivatele PHP (www-data),
+// WordPress by proto sahal po FTP. Zapisujeme primo.
+define( 'FS_METHOD', 'direct' );
+
 // true = styly a scripty se berou z Vite dev serveru (npm run dev)
 // false = nacitaji se ze zbuildeneho assets-minified (npm run build)
 define( 'VITE_DEVELOPMENT', false );
@@ -71,5 +75,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Sets up WordPress vars and included files. */
 require_once( ABSPATH . 'wp-settings.php' );
-
-define('FS_METHOD', 'direct');

@@ -236,15 +236,7 @@ if( ! class_exists( 'd1g1ThemeSetup' ) )
      */ 
     public function after_body_open( ){ ?>
       <noscript><?= __('Tato webová stránka vyžaduje javascript.', 'digi');?></noscript>
-      <span class="js-slideout-toggle linear-animation fixed right-5 top-8 z-20 block lg:hidden h-12 aspect-square cross menu--1 overflow-hidden">
-        <svg class="w-[200%] h-[200%] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="30" />
-          <path class="line--1" d="M0 40h62c13 0 6 28-4 18L35 35" />
-          <path class="line--2" d="M0 50h70" />
-          <path class="line--3" d="M0 60h62c13 0 6-28-4-18L35 65" />
-        </svg>
-      </span>
-      <?php 
+      <?php
     }
 
 

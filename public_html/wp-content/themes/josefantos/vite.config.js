@@ -17,6 +17,7 @@ export default defineConfig({
                 'admin-css': __dirname + '/assets/styles/specific-css/admin.css',
                 'ajax-pagination': __dirname+'/assets/scripts/specific-scripts/ajax-pagination.js',
                 'cookiebanner': __dirname+'/assets/scripts/specific-scripts/cookiebanner.js',
+                'analytics': __dirname+'/assets/scripts/specific-scripts/analytics.js',
                 'cookiebanner-css': __dirname + '/assets/styles/specific-css/cookiebanner.css',
             },
             output: {

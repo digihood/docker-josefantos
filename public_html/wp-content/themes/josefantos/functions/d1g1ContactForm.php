@@ -1,9 +1,13 @@
 <?php
 /**
- * Zpracování kontaktního formuláře
+ * Napojení kontaktního formuláře na Contact Form 7
  *
- * V návrhu z Figmy je odeslání pouze simulované (setTimeout), takže odesílání
- * e-mailu je doplněno zde. Běží přes admin-ajax s nonce a honeypotem.
+ * Formulář se spravuje v administraci pluginu, šablona jen řeší vzhled.
+ * V obsahu formuláře se dají použít dva zástupné tokeny, aby se ikony
+ * a odkaz na zásady nemusely psát do databáze natvrdo:
+ *
+ *   {{icon:send}}    — inline SVG ikona ze sady d1g1Icons
+ *   {{privacy_url}}  — adresa stránky se zásadami ochrany osobních údajů
  *
  * @author Digihood
  */
@@ -16,75 +20,36 @@ if ( ! class_exists( 'd1g1ContactForm' ) ) {
 
     class d1g1ContactForm {
 
-        const ACTION = 'd1g1_contact';
-
         public function __construct() {
-            add_action( 'wp_ajax_' . self::ACTION, [ $this, 'handle' ] );
-            add_action( 'wp_ajax_nopriv_' . self::ACTION, [ $this, 'handle' ] );
+            add_filter( 'wpcf7_form_elements', [ $this, 'replace_tokens' ] );
+
+            // rozestupy řeší Tailwind v šabloně formuláře, vlastní <p> a <br> od CF7 by je rozbily
+            add_filter( 'wpcf7_autop_or_not', '__return_false' );
         }
 
         /**
-         * Zpracuje odeslaný formulář
+         * Nahradí tokeny v obsahu formuláře
+         *
+         * @param string $html
          *
          * @author Digihood
-         * @return void
+         * @return string
          */
-        public function handle() {
+        public function replace_tokens( $html ) {
 
-            check_ajax_referer( self::ACTION, 'nonce' );
-
-            // Honeypot — roboti vyplní skryté pole, lidé ne
-            if ( ! empty( $_POST['website'] ) ) {
-                wp_send_json_success();
-            }
-
-            $name    = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
-            $email   = sanitize_email( wp_unslash( $_POST['email'] ?? '' ) );
-            $message = sanitize_textarea_field( wp_unslash( $_POST['message'] ?? '' ) );
-            $consent = ! empty( $_POST['consent'] );
-
-            if ( $name === '' || $message === '' ) {
-                wp_send_json_error( [ 'message' => __( 'Vyplňte prosím jméno a zprávu.', 'digi' ) ] );
-            }
-
-            if ( ! is_email( $email ) ) {
-                wp_send_json_error( [ 'message' => __( 'Zadejte platnou e-mailovou adresu.', 'digi' ) ] );
-            }
-
-            if ( ! $consent ) {
-                wp_send_json_error( [ 'message' => __( 'Bez souhlasu se zpracováním údajů nelze zprávu odeslat.', 'digi' ) ] );
-            }
-
-            $recipient = get_field( 'contact_recipient' ) ?: get_option( 'admin_email' );
-
-            $subject = sprintf(
-                /* translators: %s: jméno odesílatele */
-                __( 'Nová zpráva z webu — %s', 'digi' ),
-                $name
+            $html = str_replace(
+                '{{privacy_url}}',
+                esc_url( get_privacy_policy_url() ?: home_url( '/ochrana-osobnich-udaju/' ) ),
+                $html
             );
 
-            $body = sprintf(
-                "%s: %s\n%s: %s\n\n%s:\n%s",
-                __( 'Jméno', 'digi' ),
-                $name,
-                __( 'E-mail', 'digi' ),
-                $email,
-                __( 'Zpráva', 'digi' ),
-                $message
+            return preg_replace_callback(
+                '/\{\{icon:([a-z0-9-]+)\}\}/',
+                function ( $matches ) {
+                    return d1g1Icons::get( $matches[1], 'w-3.5 h-3.5' );
+                },
+                $html
             );
-
-            $headers = [
-                'Content-Type: text/plain; charset=UTF-8',
-                sprintf( 'Reply-To: %s <%s>', $name, $email ),
-            ];
-
-            $sent = wp_mail( $recipient, $subject, $body, $headers );
-
-            if ( ! $sent ) {
-                wp_send_json_error( [ 'message' => __( 'Zprávu se nepodařilo odeslat. Zkuste to prosím znovu.', 'digi' ) ] );
-            }
-
-            wp_send_json_success();
         }
     }
 

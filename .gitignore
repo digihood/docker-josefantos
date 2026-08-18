@@ -1,0 +1,3 @@
+# Zalohy generovane pluginem UpdraftPlus
+public_html/wp-content/updraft/backup_*
+public_html/wp-content/updraft/log.*.txt

@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Screenshoty z browser automatizace
+printscreen
+
+# Docasne soubory Playwright MCP
+.playwright-mcp

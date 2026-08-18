@@ -26,7 +26,7 @@ $items = get_field( 'services_items' );
 
             <?php foreach ( $items as $index => $item ) : ?>
 
-                <div class="intersect:animate-fade-up border border-border" data-service style="animation-delay: <?= esc_attr( $index * 80 ) ?>ms">
+                <div class="intersect:animate-fade-up intersect-once border border-border" data-service style="animation-delay: <?= esc_attr( $index * 80 ) ?>ms">
 
                     <button type="button"
                             class="w-full text-left p-7 flex items-start gap-5 group hover:bg-muted/40 transition-colors"

@@ -35,7 +35,7 @@ export default {
       background: '#ffffff',
       foreground: '#0a0a0a',
       primary: {
-        DEFAULT: '#4169e1',
+        DEFAULT: '#f16334',
         foreground: '#ffffff',
       },
       muted: {

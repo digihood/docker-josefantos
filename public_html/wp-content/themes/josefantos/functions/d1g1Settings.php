@@ -26,11 +26,11 @@ if( ! class_exists( 'd1g1Settings' ) )
     }
     //nastavit jméno pro odesílání emailů
     public static function email_name() {
-      return 'Example';
+      return 'Ing. Josef Antoš';
     }
-    //nastavit email pro odesílání emailů
+    //nastavit email pro odesílání emailů (musí sedět s účtem v Post SMTP)
     public static function email_from_d1g1() {
-      return 'example@example';
+      return 'hello@digihood.cz';
     }
     //nastaví API pro google
     public static function google_api_digihood() {

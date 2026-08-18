@@ -66,6 +66,13 @@ return [
                     'name'  => 'name',
                     'type'  => 'text',
                 ],
+                [
+                    'key'          => 'field_about_skill_url',
+                    'label'        => __( 'Odkaz', 'digi' ),
+                    'name'         => 'url',
+                    'type'         => 'url',
+                    'instructions' => __( 'Prázdné = oblast bez odkazu.', 'digi' ),
+                ],
             ],
         ],
         [
@@ -93,6 +100,13 @@ return [
                     'label' => __( 'Poznámka', 'digi' ),
                     'name'  => 'note',
                     'type'  => 'text',
+                ],
+                [
+                    'key'          => 'field_about_activity_url',
+                    'label'        => __( 'Odkaz', 'digi' ),
+                    'name'         => 'url',
+                    'type'         => 'url',
+                    'instructions' => __( 'Prázdné = aktivita bez odkazu.', 'digi' ),
                 ],
             ],
         ],

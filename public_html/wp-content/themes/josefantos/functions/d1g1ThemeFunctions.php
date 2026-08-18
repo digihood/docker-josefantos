@@ -263,6 +263,7 @@ define('VITE_SERVER', 'http://localhost:3000');
 define('VITE_ENTRY_POINT', '/vite-main.js');
 
 function vite_head_module_hook() {
+    if ( ! defined('VITE_DEVELOPMENT') || VITE_DEVELOPMENT !== true ) return;
     echo '<script type="module" crossorigin src="' . VITE_SERVER . VITE_ENTRY_POINT . '"></script>';
 }
 add_action('wp_head', 'vite_head_module_hook'); 

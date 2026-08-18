@@ -98,6 +98,13 @@ return [
                             'name'  => 'name',
                             'type'  => 'text',
                         ],
+                        [
+                            'key'          => 'field_focus_card_tag_url',
+                            'label'        => __( 'Odkaz', 'digi' ),
+                            'name'         => 'url',
+                            'type'         => 'url',
+                            'instructions' => __( 'Prázdné = štítek bez odkazu.', 'digi' ),
+                        ],
                     ],
                 ],
             ],

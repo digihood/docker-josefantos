@@ -21,7 +21,7 @@ $activities = get_field( 'about_activities' );
     <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 lg:gap-14">
 
         <?php if ( $photo ) : ?>
-            <div class="intersect:animate-fade-up">
+            <div class="intersect:animate-fade-up intersect-once">
                 <div class="aspect-[3/4] overflow-hidden">
                     <?= wp_get_attachment_image( $photo, 'large', false, [
                         'class'   => 'w-full h-full object-cover object-[center_8%]',
@@ -32,7 +32,7 @@ $activities = get_field( 'about_activities' );
             </div>
         <?php endif; ?>
 
-        <div class="intersect:animate-fade-up flex flex-col gap-10">
+        <div class="intersect:animate-fade-up intersect-once flex flex-col gap-10">
 
             <div>
                 <?php if ( $label ) : ?>
@@ -46,7 +46,7 @@ $activities = get_field( 'about_activities' );
                 <?php endif; ?>
 
                 <?php if ( $text ) : ?>
-                    <div class="max-w-content text-muted-foreground [&_p]:mb-5 [&_p:last-child]:mb-0 [&_strong]:text-foreground [&_strong]:font-medium">
+                    <div class="max-w-content text-muted-foreground [&_p]:mb-5 [&_p:last-child]:mb-0 [&_strong]:text-foreground [&_strong]:font-medium [&_a]:text-foreground [&_a]:font-medium [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-border [&_a:hover]:text-primary [&_a:hover]:decoration-primary">
                         <?= wp_kses_post( $text ) ?>
                     </div>
                 <?php endif; ?>
@@ -63,15 +63,10 @@ $activities = get_field( 'about_activities' );
                                 </span>
                             <?php endif; ?>
 
-                            <div class="flex flex-wrap gap-2">
-                                <?php foreach ( $skills as $skill ) : ?>
-                                    <?php if ( ! empty( $skill['name'] ) ) : ?>
-                                        <span class="text-sm px-3 py-1.5 border border-border text-foreground hover:border-primary hover:text-primary transition-colors cursor-default">
-                                            <?= esc_html( $skill['name'] ) ?>
-                                        </span>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </div>
+                            <?php get_template_part( 'parts/block/partials/tag-list', null, [
+                                'tags'    => $skills,
+                                'variant' => 'outline',
+                            ] ); ?>
                         </div>
                     <?php endif; ?>
 
@@ -93,7 +88,16 @@ $activities = get_field( 'about_activities' );
                                     }
                                     ?>
                                     <div class="flex items-center justify-between gap-4 py-4 <?= $index < $last ? 'border-b border-border' : '' ?>">
-                                        <span class="text-sm font-medium text-foreground"><?= esc_html( $activity['name'] ) ?></span>
+                                        <?php if ( ! empty( $activity['url'] ) ) : ?>
+                                            <a href="<?= esc_url( $activity['url'] ) ?>"
+                                               target="_blank"
+                                               rel="noopener noreferrer"
+                                               class="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                                                <?= esc_html( $activity['name'] ) ?>
+                                            </a>
+                                        <?php else : ?>
+                                            <span class="text-sm font-medium text-foreground"><?= esc_html( $activity['name'] ) ?></span>
+                                        <?php endif; ?>
 
                                         <?php if ( ! empty( $activity['note'] ) ) : ?>
                                             <span class="text-sm text-muted-foreground text-right"><?= esc_html( $activity['note'] ) ?></span>

@@ -18,7 +18,8 @@ if ( ! class_exists( 'd1g1Icons' ) ) {
 
         /** @var array Vnitřek <svg> pro jednotlivé ikony */
         private static $paths = [
-            'arrow-up-right' => '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
+            'arrow-up-right'   => '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
+            'arrow-down-right' => '<path d="M7 17h10V7"/><path d="M7 7 17 17"/>',
             'chevron-down'   => '<path d="m6 9 6 6 6-6"/>',
             'menu'           => '<path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/>',
             'x'              => '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',

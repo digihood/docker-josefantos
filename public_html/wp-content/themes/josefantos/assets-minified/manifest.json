@@ -14,6 +14,11 @@
     "isEntry": true,
     "src": "assets/scripts/specific-scripts/ajax-pagination.js"
   },
+  "assets/scripts/specific-scripts/analytics.js": {
+    "file": "scripts/analytics.js",
+    "isEntry": true,
+    "src": "assets/scripts/specific-scripts/analytics.js"
+  },
   "assets/scripts/specific-scripts/cookiebanner.js": {
     "file": "scripts/cookiebanner.js",
     "isEntry": true,
