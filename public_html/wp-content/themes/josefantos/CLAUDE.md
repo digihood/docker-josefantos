@@ -56,7 +56,13 @@ Registrace je datová, ne ruční:
 2. `functions/d1g1AcfBlocks.php` — přes `glob()` načte všechny soubory ve `functions/acf/`,
    zaregistruje blok (kategorie `josefantos`) i field group, `location` dopočítá ze slugu.
 3. `parts/block/{slug}.php` — frontendová šablona, kterou render callback includuje.
-   V administraci se místo šablony vypíše jen náhled s nadpisem (`preview_field`).
+
+V editoru se místo šablony vypisuje kompaktní náhled (název sekce + `preview_field`), po kliknutí
+ACF vymění náhled za formulář polí — o to se stará `'mode' => 'auto'` a `autoInlineEditing` musí
+zůstat vypnuté, jinak by se texty editovaly rovnou v náhledu. **Příznak náhledu chodí jako třetí
+parametr render callbacku** (`render( $block, $content, $is_preview, $post_id )`), ne uvnitř
+`$block` — náhled se totiž vykresluje přes REST, kde `is_admin()` neplatí. Vzhled karty náhledu
+je v `assets/styles/specific-css/admin.css`.
 
 **Nový blok = přidat dva soubory se stejným slugem, nic dalšího se nikde neregistruje.**
 Soubor ve `functions/acf/` bez klíče `fields` se přeskočí a registruje se sám —

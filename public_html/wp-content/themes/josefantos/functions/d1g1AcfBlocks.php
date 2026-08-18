@@ -77,9 +77,11 @@ if ( ! class_exists( 'd1g1AcfBlocks' ) ) {
                 'icon'              => $config['icon'] ?? 'layout',
                 'keywords'          => $config['keywords'] ?? [],
                 'render_callback'   => [ $this, 'render' ],
+                // auto = nezvolený blok ukazuje náhled, po kliknutí se rozbalí formulář ACF
                 'mode'              => 'auto',
                 'blockVersion'      => 2,
-                'autoInlineEditing' => true,
+                // inline editace by nechala upravovat texty rovnou v náhledu místo formuláře
+                'autoInlineEditing' => false,
                 'supports'          => [
                     'align'  => false,
                     'anchor' => true,
@@ -121,12 +123,13 @@ if ( ! class_exists( 'd1g1AcfBlocks' ) ) {
          * @author Digihood
          * @return void
          */
-        public function render( $block ) {
+        public function render( $block, $content = '', $is_preview = false, $post_id = 0 ) {
 
             $name   = str_replace( 'acf/', '', $block['name'] );
             $config = self::$blocks[ $name ] ?? [];
 
-            if ( ! empty( $block['data']['is_preview'] ) || ( is_admin() && ! empty( $block['is_preview'] ) ) ) {
+            // Náhled se vykresluje i přes REST, příznak proto chodí jako třetí parametr callbacku
+            if ( $is_preview ) {
                 echo self::preview( $config );
                 return;
             }
@@ -153,6 +156,9 @@ if ( ! class_exists( 'd1g1AcfBlocks' ) ) {
 
             if ( ! empty( $config['preview_field'] ) ) {
                 $text = wp_strip_all_tags( (string) get_field( $config['preview_field'] ) );
+
+                // víceřádkové nadpisy do jedné řádky, bez značek zvýraznění (*text*)
+                $text = trim( preg_replace( '/\s+/', ' ', str_replace( '*', '', $text ) ) );
             }
 
             $out  = '<div class="d1g1-block-preview">';
@@ -162,6 +168,7 @@ if ( ! class_exists( 'd1g1AcfBlocks' ) ) {
                 $out .= '<span class="d1g1-block-preview__title">' . esc_html( $text ) . '</span>';
             }
 
+            $out .= '<span class="d1g1-block-preview__hint">' . esc_html__( 'Kliknutím upravíte obsah', 'digi' ) . '</span>';
             $out .= '</div>';
 
             return $out;

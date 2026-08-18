@@ -67,7 +67,9 @@ if( ! class_exists( 'd1g1RegisterStylesScripts' ) )
       global $wp_query;
 
       // Register main stylesheet
-      if (defined('VITE_DEVELOPMENT') && VITE_DEVELOPMENT != true) {
+      // Styl vynechavame jen ve vyvoji, kdy ho dodava Vite server. Pokud konstanta neni
+      // definovana (typicky na produkci), plati zbuildeny soubor.
+      if ( ! defined('VITE_DEVELOPMENT') || VITE_DEVELOPMENT !== true ) {
         $maincsstime = filemtime( get_stylesheet_directory() . $this->styles_directory . '/style.css');
         wp_enqueue_style( 'main-css', get_template_directory_uri() . $this->styles_directory . '/style.css', array(), $maincsstime);
       }

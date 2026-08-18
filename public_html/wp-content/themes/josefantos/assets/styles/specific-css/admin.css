@@ -27,8 +27,15 @@
     gap: 12px;
     padding: 18px 22px;
     border: 1px solid #d7dade;
-    border-left: 4px solid #4169e1;
+    border-left: 4px solid theme('colors.primary.DEFAULT');
     background: #fbfbfc;
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease;
+}
+
+.d1g1-block-preview:hover {
+    background: #fff;
+    border-color: theme('colors.primary.DEFAULT');
 }
 
 .d1g1-block-preview__label {
@@ -44,4 +51,11 @@
     font-size: 17px;
     font-weight: 600;
     color: #0a0a0a;
+}
+
+.d1g1-block-preview__hint {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #8c8f98;
 }
