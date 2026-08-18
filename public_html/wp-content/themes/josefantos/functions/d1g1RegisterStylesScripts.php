@@ -75,8 +75,6 @@ if( ! class_exists( 'd1g1RegisterStylesScripts' ) )
       }
       $fontstime = filemtime( get_stylesheet_directory() . $this->styles_directory . '/fonts.css');
       wp_enqueue_style( 'fonts', get_template_directory_uri() . $this->styles_directory . '/fonts.css', array(), $fontstime);
-      $slideouttime = filemtime( get_stylesheet_directory() . $this->specific_styles_directory . '/slideout-menu.css');
-      wp_enqueue_style( 'slideout-menu', get_template_directory_uri() . $this->specific_styles_directory . '/slideout-menu.css', array(), $slideouttime);
 
       // Register javacript
       $apptime = filemtime( get_stylesheet_directory() . $this->scripts_directory . '/app.js');
@@ -139,21 +137,6 @@ if( ! class_exists( 'd1g1RegisterStylesScripts' ) )
         wp_enqueue_script( 'comment-reply' );
       }
 
-      if ( is_home() || is_archive() ) {
-        $atime = filemtime( get_stylesheet_directory() . $this->specific_scripts_directory  . '/ajax-pagination.js'); 
-        $qw = $wp_query->query;
-        wp_register_script ( 'ajax-pagination', get_template_directory_uri() . $this->specific_scripts_directory  . '/ajax-pagination.js', array( 'jquery' ), $atime, true );  
-        wp_enqueue_script ( 'ajax-pagination', get_template_directory_uri() . $this->specific_scripts_directory  . '/ajax-pagination.js', array( 'jquery' ), $atime, true); 
-        wp_localize_script( 'ajax-pagination', 'd1g1AjaxPagination', array(
-          'ajaxurl' => admin_url( 'admin-ajax.php' ),
-          'query_vars' => json_encode( $qw )
-        ));
-      }
-
-      //slideout menu
-      $slideoutMenu = filemtime( get_stylesheet_directory() . '/node_modules/slideout/dist/slideout.min.js');
-      wp_enqueue_script('slideout', get_stylesheet_directory_uri() . '/node_modules/slideout/dist/slideout.min.js', array('jquery', 'global'), $slideoutMenu, true);
-      
       //register scripts
       if ( $this->is_lightgallery_required_d1g1() ) {
         //light gallery

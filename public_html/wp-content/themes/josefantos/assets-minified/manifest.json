@@ -9,11 +9,6 @@
     "isEntry": true,
     "src": "assets/scripts/specific-scripts/admin.js"
   },
-  "assets/scripts/specific-scripts/ajax-pagination.js": {
-    "file": "scripts/ajax-pagination.js",
-    "isEntry": true,
-    "src": "assets/scripts/specific-scripts/ajax-pagination.js"
-  },
   "assets/scripts/specific-scripts/analytics.js": {
     "file": "scripts/analytics.js",
     "isEntry": true,
@@ -38,11 +33,6 @@
     "file": "styles/cookiebanner.css",
     "isEntry": true,
     "src": "assets/styles/specific-css/cookiebanner.css"
-  },
-  "assets/styles/specific-css/slideout-menu.css": {
-    "file": "styles/slideout-menu.css",
-    "isEntry": true,
-    "src": "assets/styles/specific-css/slideout-menu.css"
   },
   "assets/styles/style.css": {
     "file": "styles/style.css",

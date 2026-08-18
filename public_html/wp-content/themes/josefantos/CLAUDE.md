@@ -45,7 +45,7 @@ Ověřování změn probíhá v prohlížeči proti `http://localhost:8080`.
 
 ### Načítání PHP
 `functions.php` → `functions/include.php` → jmenovitý seznam includů. **Nový soubor ve `functions/`
-se nenačte sám** — musí se přidat do `include.php` (resp. `builder/include.php` pro builder).
+se nenačte sám** — musí se přidat do `include.php`.
 Třídy se jmenují `d1g1*` a instancují se hned na konci vlastního souboru (`new d1g1Xxx;`).
 
 ### ACF bloky — hlavní stavební prvek webu
@@ -74,12 +74,15 @@ Kromě hlavičky sekce je tu `tag-list.php` (štítky s volitelným odkazem, var
 který sdílí blok „Čemu se věnuji“ a „Klíčové oblasti“ v bloku o mně.
 
 ### Šablony stránek
+Web je jednostránkový, blog ani přihlašování v šabloně nejsou — starterové části
+(`single.php`, `sidebar.php`, builder `d1g1B`, widgety, ajaxové stránkování, login/registrace)
+byly odstraněny.
+
 - `front-page.php` a `page-templates/template-full-width.php` jen vypíší `the_content()` —
   bloky si container i odsazení řeší samy.
 - `page.php` includuje `page-templates/template-narrow.php` (textové stránky typu GDPR).
-- `index.php`, `single.php` a starterové party používají statický builder `d1g1B`
-  (`d1g1B::container()`, `::cell()`, `::icon()`, …) ze staré Foundation-like mřížky.
-  **Nové sekce z Figma návrhu builder nepoužívají** — píší se přímo v Tailwindu.
+- `index.php` (WordPress ho v šabloně vyžaduje) a `404.php` jsou jen záložní stránky se zprávou,
+  obě staví na sdíleném `parts/theme/message.php`.
 
 ### Záhlaví, zápatí, menu
 `header.php` → `parts/theme/header-content.php` + `parts/theme/mobile-menu.php`,
@@ -89,8 +92,7 @@ které obsluhuje `functions/d1g1NavigationMenus.php` (lokace `primary`, `mobile`
 
 ### Ikony
 `d1g1Icons::get( 'name', 'tailwind třídy' )` — inline SVG (sada Lucide) definované jako pole
-cest v `functions/d1g1Icons.php`. Nová ikona = nový záznam v `$paths`, ne soubor v `assets/svg/`
-(ten adresář patří ke staršímu builderu).
+cest v `functions/d1g1Icons.php`. Nová ikona = nový záznam v `$paths`.
 
 ### JS a formuláře
 Veškerý frontend JS je v `assets/scripts/js/app.js` (jQuery IIFE), specifické skripty
@@ -132,7 +134,7 @@ a odpovídající `wp_enqueue_*` v této třídě.
 
 Pozor na dvě věci:
 - Enqueue používá `filemtime()` — chybějící soubor v `assets-minified/` shodí web fatální chybou.
-- Runtime závislosti (`slideout`, `tailwindcss-intersect`, `lightgallery`, `slick-carousel`)
+- Runtime závislosti (`tailwindcss-intersect`, `lightgallery`, `slick-carousel`)
   se načítají **přímo z `node_modules/`**, které není v gitu. Bez `npm install` na cílovém
   prostředí web nefunguje.
 

@@ -166,22 +166,6 @@
     //init on load
     jQuery(window).on( "load", function() {
 
-        //slideout menu se používá jen pokud je v šabloně přítomný
-        if ( document.getElementById('menu') && typeof Slideout !== 'undefined' ) {
-            var slideout = new Slideout({
-                'panel': document.getElementById('panel'),
-                'menu': document.getElementById('menu'),
-                'padding': 256,
-                'side': 'right',
-                'tolerance': 70
-            });
-
-            $('.js-slideout-toggle, .slideout-menu .close-button').on('click', function(){
-                slideout.toggle();
-            });
-        }
-
-
         (function ($) {
 
             var rankMath = {

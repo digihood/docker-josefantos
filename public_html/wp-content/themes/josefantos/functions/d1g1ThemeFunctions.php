@@ -121,25 +121,6 @@ if ( !function_exists('add_new_mime_types_end') ) {
 }
 
 /**
-   * return icon url
-   *
-   * @param $lang string
-   * 
-   * @author Digihood
-   * @return echo string
-   */ 
-
-if ( !function_exists('get_svg_url') ) {
-
-    function get_svg_url( $value ) {
-  
-      return get_stylesheet_directory_uri() . '/assets/svg/' . $value . ".svg";
-  
-    }
-  
-  }
-  
-/**
    * Rename options menu
    *
    * @param $lang string
