@@ -277,25 +277,3 @@ if ( !function_exists('disable_emojicons_tinymce_d1g1') ) {
   }
 
 }
-
-/**
- * Optimalizace načítání favicon
- */
-function optimize_site_icon() {
-  // Odstranění původního wp_site_icon
-  remove_action('wp_head', 'wp_site_icon', 99);
-  
-  // Přidání optimalizované verze
-  add_action('wp_head', function() {
-      if (!has_site_icon()) {
-          return;
-      }
-      
-      $icon_url = get_site_icon_url();
-      ?>
-      <link rel="preload" href="<?php echo esc_url($icon_url); ?>" as="image" type="image/x-icon">
-      <link rel="icon" href="<?php echo esc_url($icon_url); ?>" media="print" onload="this.media='all'">
-      <?php
-  }, 99);
-}
-add_action('after_setup_theme', 'optimize_site_icon');
