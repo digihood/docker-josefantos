@@ -20,8 +20,11 @@ $cta_anchor = get_field( 'header_cta_anchor', 'option' );
     <div class="container h-16 flex items-center justify-between">
 
         <a href="<?= esc_url( home_url( '/' ) ) ?>"
-           class="font-display text-sm font-semibold tracking-tight hover:text-primary transition-colors">
-            <?= esc_html( $brand ) ?>
+           class="hover:opacity-70 transition-opacity">
+            <img src="<?= esc_url( get_template_directory_uri() . '/assets/img/logo.png' ) ?>"
+                 alt="<?= esc_attr( $brand ) ?>"
+                 width="243" height="28"
+                 class="h-6 md:h-7 w-auto">
         </a>
 
         <nav class="hidden md:flex items-center gap-8
