@@ -9,7 +9,7 @@ Git repozitář má kořen o čtyři úrovně výš — v `docker-josefantos/` (
 `public_html/` a `data/` s MySQL daty). Commity se tedy dělají z kořene repa, ne z adresáře šablony.
 
 Web je jednostránková prezentace poskládaná z ACF bloků (hero, focus, about, services, contact),
-převedená z návrhu ve Figma Make. Texty v UI i komentářích jsou česky, textová doména je `digi`.
+převedená z návrhu ve Figma Make. Texty v UI i komentářích jsou česky, textová doména je `jos`.
 
 ## Příkazy
 

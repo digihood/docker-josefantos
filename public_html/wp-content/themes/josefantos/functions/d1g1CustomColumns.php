@@ -26,7 +26,7 @@ if( ! class_exists( 'd1g1CustomColumns' ) )
 
         //add custom columns to coupons
         function page_custom_column( $columns ) {
-            $columns['page_template'] = __('Šablona', 'digi');
+            $columns['page_template'] = __('Šablona', 'jos');
             return $columns;
         }
 

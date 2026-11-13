@@ -37,7 +37,7 @@ $text  = $args['text'] ?? '';
 
         <a href="<?= esc_url( home_url( '/' ) ) ?>"
            class="inline-flex items-center gap-3 text-sm font-medium bg-primary text-primary-foreground px-7 py-3.5 hover:bg-primary/85 transition-colors">
-            <?php esc_html_e( 'Zpět na úvodní stránku', 'digi' ); ?>
+            <?php esc_html_e( 'Zpět na úvodní stránku', 'jos' ); ?>
             <?= d1g1Icons::get( 'arrow-up-right', 'w-3.5 h-3.5' ) ?>
         </a>
 

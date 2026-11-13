@@ -49,7 +49,7 @@ $cta_anchor = get_field( 'header_cta_anchor', 'option' );
                 data-menu-toggle
                 aria-controls="mobile-menu"
                 aria-expanded="false"
-                aria-label="<?= esc_attr__( 'Otevřít menu', 'digi' ) ?>">
+                aria-label="<?= esc_attr__( 'Otevřít menu', 'jos' ) ?>">
             <span data-menu-icon="open"><?= d1g1Icons::get( 'menu', 'w-5 h-5' ) ?></span>
             <span data-menu-icon="close" class="hidden"><?= d1g1Icons::get( 'x', 'w-5 h-5' ) ?></span>
         </button>

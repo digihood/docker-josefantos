@@ -17,8 +17,8 @@ if ( ! function_exists( 'acf_add_options_page' ) ) {
 }
 
 acf_add_options_page( [
-    'page_title' => __( 'Nastavení webu', 'digi' ),
-    'menu_title' => __( 'Nastavení webu', 'digi' ),
+    'page_title' => __( 'Nastavení webu', 'jos' ),
+    'menu_title' => __( 'Nastavení webu', 'jos' ),
     'menu_slug'  => 'nastaveni-webu',
     'capability' => 'edit_theme_options',
     'icon_url'   => 'dashicons-admin-customizer',
@@ -28,31 +28,31 @@ acf_add_options_page( [
 
 acf_add_local_field_group( [
     'key'      => 'group_site_options',
-    'title'    => __( 'Nastavení webu', 'digi' ),
+    'title'    => __( 'Nastavení webu', 'jos' ),
     'fields'   => [
 
         // ── Záhlaví ─────────────────────────────────────────────
         [
             'key'   => 'field_options_tab_header',
-            'label' => __( 'Záhlaví', 'digi' ),
+            'label' => __( 'Záhlaví', 'jos' ),
             'type'  => 'tab',
         ],
         [
             'key'          => 'field_options_brand',
-            'label'        => __( 'Název v záhlaví', 'digi' ),
+            'label'        => __( 'Název v záhlaví', 'jos' ),
             'name'         => 'brand',
             'type'         => 'text',
-            'instructions' => __( 'Zobrazí se vlevo nahoře. Prázdné = název webu.', 'digi' ),
+            'instructions' => __( 'Zobrazí se vlevo nahoře. Prázdné = název webu.', 'jos' ),
         ],
         [
             'key'   => 'field_options_header_cta_text',
-            'label' => __( 'Text tlačítka v záhlaví', 'digi' ),
+            'label' => __( 'Text tlačítka v záhlaví', 'jos' ),
             'name'  => 'header_cta_text',
             'type'  => 'text',
         ],
         [
             'key'         => 'field_options_header_cta_anchor',
-            'label'       => __( 'Kotva tlačítka', 'digi' ),
+            'label'       => __( 'Kotva tlačítka', 'jos' ),
             'name'        => 'header_cta_anchor',
             'type'        => 'text',
             'placeholder' => '#contact',
@@ -61,33 +61,33 @@ acf_add_local_field_group( [
         // ── Zápatí ──────────────────────────────────────────────
         [
             'key'   => 'field_options_tab_footer',
-            'label' => __( 'Zápatí', 'digi' ),
+            'label' => __( 'Zápatí', 'jos' ),
             'type'  => 'tab',
         ],
         [
             'key'          => 'field_options_footer_name',
-            'label'        => __( 'Jméno v copyrightu', 'digi' ),
+            'label'        => __( 'Jméno v copyrightu', 'jos' ),
             'name'         => 'footer_name',
             'type'         => 'text',
-            'instructions' => __( 'Rok se doplní automaticky.', 'digi' ),
+            'instructions' => __( 'Rok se doplní automaticky.', 'jos' ),
         ],
         [
             'key'   => 'field_options_footer_company',
-            'label' => __( 'Firma v zápatí', 'digi' ),
+            'label' => __( 'Firma v zápatí', 'jos' ),
             'name'  => 'footer_company',
             'type'  => 'text',
         ],
         [
             'key'          => 'field_options_socials',
-            'label'        => __( 'Sociální sítě', 'digi' ),
+            'label'        => __( 'Sociální sítě', 'jos' ),
             'name'         => 'socials',
             'type'         => 'repeater',
             'layout'       => 'table',
-            'button_label' => __( 'Přidat síť', 'digi' ),
+            'button_label' => __( 'Přidat síť', 'jos' ),
             'sub_fields'   => [
                 [
                     'key'           => 'field_options_social_network',
-                    'label'         => __( 'Síť', 'digi' ),
+                    'label'         => __( 'Síť', 'jos' ),
                     'name'          => 'network',
                     'type'          => 'select',
                     'choices'       => [
@@ -98,7 +98,7 @@ acf_add_local_field_group( [
                 ],
                 [
                     'key'   => 'field_options_social_url',
-                    'label' => __( 'Odkaz', 'digi' ),
+                    'label' => __( 'Odkaz', 'jos' ),
                     'name'  => 'url',
                     'type'  => 'url',
                 ],

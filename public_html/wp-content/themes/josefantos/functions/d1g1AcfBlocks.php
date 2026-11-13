@@ -151,7 +151,7 @@ if ( ! class_exists( 'd1g1AcfBlocks' ) ) {
          */
         private static function preview( $config ) {
 
-            $label = $config['title'] ?? __( 'Blok', 'digi' );
+            $label = $config['title'] ?? __( 'Blok', 'jos' );
             $text  = '';
 
             if ( ! empty( $config['preview_field'] ) ) {
@@ -168,7 +168,7 @@ if ( ! class_exists( 'd1g1AcfBlocks' ) ) {
                 $out .= '<span class="d1g1-block-preview__title">' . esc_html( $text ) . '</span>';
             }
 
-            $out .= '<span class="d1g1-block-preview__hint">' . esc_html__( 'Kliknutím upravíte obsah', 'digi' ) . '</span>';
+            $out .= '<span class="d1g1-block-preview__hint">' . esc_html__( 'Kliknutím upravíte obsah', 'jos' ) . '</span>';
             $out .= '</div>';
 
             return $out;
@@ -187,7 +187,7 @@ add_filter( 'block_categories_all', function ( $categories ) {
 
     array_unshift( $categories, [
         'slug'  => 'josefantos',
-        'title' => __( 'Sekce webu', 'digi' ),
+        'title' => __( 'Sekce webu', 'jos' ),
     ] );
 
     return $categories;

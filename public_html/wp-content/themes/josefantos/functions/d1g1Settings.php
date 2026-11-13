@@ -17,12 +17,12 @@ if( ! class_exists( 'd1g1Settings' ) )
       
     //defaultní počet příspěvků
     public static function cookieHeader( ) {
-      return __('Naše webová stránka používá cookies', 'digi');
+      return __('Naše webová stránka používá cookies', 'jos');
     }
 
     //počet příspěvků načtených na šabloně pro logace
     public static function cookieContent( ) {
-      return __('Používáme je, abychom mohli našim zákazníkům poskytnout lepší služby. Odsouhlasením této informace jejich použití schválíte.', 'digi');
+      return __('Používáme je, abychom mohli našim zákazníkům poskytnout lepší služby. Odsouhlasením této informace jejich použití schválíte.', 'jos');
     }
     //nastavit jméno pro odesílání emailů
     public static function email_name() {

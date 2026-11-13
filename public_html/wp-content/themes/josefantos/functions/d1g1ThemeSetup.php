@@ -1,50 +1,46 @@
-<?php 
+<?php
 
 /**
  * Setup
  * 
  * @author Digihood
- */ 
+ */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
   exit;
 }
 
-if( ! class_exists( 'd1g1ThemeSetup' ) )
-{
-	class d1g1ThemeSetup
-	{
+if (! class_exists('d1g1ThemeSetup')) {
+  class d1g1ThemeSetup
+  {
 
-		public function __construct()
-		{
+    public function __construct()
+    {
 
       //ovládání admin menu
       //add_action( 'admin_menu', [$this,'remove_menu_pages'] );
 
       //nastavení šablony
-      add_action('after_setup_theme', [$this,'site_setup']);
+      add_action('after_setup_theme', [$this, 'site_setup']);
 
       //požadované pluginy
-      add_action('init', [$this,'theme_die_d1g1']);
+      add_action('init', [$this, 'theme_die_d1g1']);
 
       //GTM
-      add_action( 'wp_head', [$this,'add_main_gtm'], PHP_INT_MAX );
-      add_action( 'wp_body_open', [$this,'add_gtm_noindex'] );
+      add_action('wp_head', [$this, 'add_main_gtm'], PHP_INT_MAX);
 
       //excerpt filter
       if (!is_admin()) {
-        remove_filter('get_the_excerpt', [$this,'wp_trim_excerpt']);
-        add_filter('get_the_excerpt', [$this,'filter_excerpt']);
+        remove_filter('get_the_excerpt', [$this, 'wp_trim_excerpt']);
+        add_filter('get_the_excerpt', [$this, 'filter_excerpt']);
       }
 
       //oprava preview modu
-      add_filter('_wp_post_revision_fields', [$this,'add_field_debug_preview_d1g1'] );
-      add_action( 'edit_form_after_title', [$this,'add_input_debug_preview_d1g1'] );
+      add_filter('_wp_post_revision_fields', [$this, 'add_field_debug_preview_d1g1']);
+      add_action('edit_form_after_title', [$this, 'add_input_debug_preview_d1g1']);
 
       //přidat místo pod zápatím
-      add_action( 'wp_body_open', [$this,'after_body_open'] );
-      
-
+      add_action('wp_body_open', [$this, 'after_body_open']);
     }
 
     /**
@@ -54,9 +50,10 @@ if( ! class_exists( 'd1g1ThemeSetup' ) )
      * 
      * @author Digihood
      * @return void
-     */ 
+     */
 
-    public function remove_menu_pages() {
+    public function remove_menu_pages()
+    {
       //remove_menu_page('edit-comments.php');
     }
 
@@ -67,22 +64,23 @@ if( ! class_exists( 'd1g1ThemeSetup' ) )
      * 
      * @author Digihood
      * @return void
-     */ 
-    function site_setup() {
+     */
+    function site_setup()
+    {
 
       //load theme text domain
-      load_theme_textdomain( 'custom', get_template_directory() . '/languages' );
+      load_theme_textdomain('jos', get_template_directory() . '/languages');
 
       // Enable support 
-      add_theme_support('post-thumbnails');  
+      add_theme_support('post-thumbnails');
       add_theme_support('menus');
-      add_theme_support( "title-tag" );
+      add_theme_support("title-tag");
       add_filter('widget_text', 'do_shortcode');
 
       //ACF sections
-      if ( function_exists('acf_add_options_sub_page') ) { 
-        acf_add_options_sub_page( 'Obecné nastavení' );
-        acf_add_options_sub_page( 'Záhlaví' );
+      if (function_exists('acf_add_options_sub_page')) {
+        acf_add_options_sub_page('Obecné nastavení');
+        acf_add_options_sub_page('Záhlaví');
       }
 
       // Add custom image sizes
@@ -99,30 +97,30 @@ if( ! class_exists( 'd1g1ThemeSetup' ) )
       // Register menus
       register_nav_menus(
         array(
-          'primary' => __( 'Hlavní menu', 'custom' ),
-          'mobile' => __( 'Mobilní menu', 'custom' ),
-          'footer' => __('Menu zápatí', 'digi')
+          'primary' => __('Hlavní menu', 'jos'),
+          'mobile' => __('Mobilní menu', 'jos'),
+          'footer' => __('Menu zápatí', 'jos')
         )
       );
 
       // Adding post format support
-      add_theme_support( 'post-formats',
-          array(
-              'aside',             // title less blurb
-              'gallery',           // gallery of images
-              'link',              // quick link to other site
-              'image',             // an image
-              'quote',             // a quick quote
-              'status',            // a Facebook like status update
-              'video',             // video
-              'audio',             // audio
-              'chat'               // chat transcript
-          )
-      ); 
+      add_theme_support(
+        'post-formats',
+        array(
+          'aside',             // title less blurb
+          'gallery',           // gallery of images
+          'link',              // quick link to other site
+          'image',             // an image
+          'quote',             // a quick quote
+          'status',            // a Facebook like status update
+          'video',             // video
+          'audio',             // audio
+          'chat'               // chat transcript
+        )
+      );
 
       // Set the maximum allowed width for any content in the theme, like oEmbeds and images added to posts.
-      $GLOBALS['content_width'] = 1200;	
-
+      $GLOBALS['content_width'] = 1200;
     }
 
     /**
@@ -132,15 +130,16 @@ if( ! class_exists( 'd1g1ThemeSetup' ) )
      * 
      * @author Digihood
      * @return void
-     */ 
-    public function theme_die_d1g1( ) {
+     */
+    public function theme_die_d1g1()
+    {
 
-      if ( is_admin() ) return false;
-  
-      if ( !function_exists( 'get_field' ) ) die("Plugin Advanced Custom Fields je požadovaný. Aktivujte ho.");
-  
+      if (is_admin()) return false;
+
+      if (!function_exists('get_field')) die("Plugin Advanced Custom Fields je požadovaný. Aktivujte ho.");
+
       //if ( !function_exists( 'is_woocommerce' ) ) die("Plugin Woocommerce je požadovaný. Aktivujte ho.");
-      
+
     }
 
 
@@ -151,33 +150,23 @@ if( ! class_exists( 'd1g1ThemeSetup' ) )
      * 
      * @author Digihood
      * @return true/false
-     */ 
+     */
 
-    public function add_main_gtm() {
+    public function add_main_gtm()
+    {
 
-      if ( is_production_d1g1() ) { ?>
+      if (is_production_d1g1()) { ?>
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-5SRPDL2M"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
 
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+        </script>
       <?php }
-      
     }
-
-    /**
-     * přidání GTM fallbacku pro noscripty za BODY tagem
-     *
-     * @param none
-     * 
-     * @author Digihood
-     * @return true/false
-     */ 
-
-    public function add_gtm_noindex() {
-
-      //zde vložte inframe kód
-      if ( is_production_d1g1() ) { ?>
-
-      <?php }
-      
-    }    
 
     /**
      * Removes [...] from the excerpt and allows you to set the number of words in there
@@ -186,12 +175,12 @@ if( ! class_exists( 'd1g1ThemeSetup' ) )
      * 
      * @author Digihood
      * @return true/false
-     */ 
-    public function filter_excerpt($text) {
-      if ($text == '' )
-      {
+     */
+    public function filter_excerpt($text)
+    {
+      if ($text == '') {
         $text = get_the_content('');
-        $text = strip_shortcodes( $text );
+        $text = strip_shortcodes($text);
         //$text = apply_filters('the_content', $text);
         $text = str_replace(']]>', ']]>', $text);
         $text = strip_tags($text);
@@ -215,16 +204,18 @@ if( ! class_exists( 'd1g1ThemeSetup' ) )
      * 
      * @author Digihood
      * @return true/false
-     */ 
+     */
 
-    function add_field_debug_preview_d1g1($fields){
+    function add_field_debug_preview_d1g1($fields)
+    {
       $fields["debug_preview"] = "debug_preview";
       return $fields;
     }
 
-    function add_input_debug_preview_d1g1() {
+    function add_input_debug_preview_d1g1()
+    {
       echo '<input type="hidden" name="debug_preview" value="debug_preview">';
-    }  
+    }
 
     /**
      * Přidá mobilní menu do šablony
@@ -233,47 +224,45 @@ if( ! class_exists( 'd1g1ThemeSetup' ) )
      * 
      * @author Digihood
      * @return html
-     */ 
-    public function after_body_open( ){ ?>
-      <noscript><?= __('Tato webová stránka vyžaduje javascript.', 'digi');?></noscript>
-      <?php
+     */
+    public function after_body_open()
+    { ?>
+      <noscript><?= __('Tato webová stránka vyžaduje javascript.', 'jos'); ?></noscript>
+<?php
     }
-
-
-  
   }
-  
+
   new d1g1ThemeSetup;
 }
 
 //odebrání emojis
-if ( !function_exists('disable_wp_emojicons_d1g1') ) { 
+if (!function_exists('disable_wp_emojicons_d1g1')) {
 
-  function disable_wp_emojicons_d1g1() {
+  function disable_wp_emojicons_d1g1()
+  {
     // all actions related to emojis
-    remove_action( 'admin_print_styles', 'print_emoji_styles' );
-    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-    remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-    remove_action( 'wp_print_styles', 'print_emoji_styles' );
-    remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-    remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-    remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+    remove_action('admin_print_styles', 'print_emoji_styles');
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+    remove_filter('the_content_feed', 'wp_staticize_emoji');
+    remove_filter('comment_text_rss', 'wp_staticize_emoji');
 
     // filter to remove TinyMCE emojis
-    add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce_d1g1' );
+    add_filter('tiny_mce_plugins', 'disable_emojicons_tinymce_d1g1');
   }
 
-  add_action( 'init', 'disable_wp_emojicons_d1g1' );
-
+  add_action('init', 'disable_wp_emojicons_d1g1');
 }
 
-if ( !function_exists('disable_emojicons_tinymce_d1g1') ) { 
-  function disable_emojicons_tinymce_d1g1( $plugins ) {
-    if ( is_array( $plugins ) ) {
-      return array_diff( $plugins, array( 'wpemoji' ) );
+if (!function_exists('disable_emojicons_tinymce_d1g1')) {
+  function disable_emojicons_tinymce_d1g1($plugins)
+  {
+    if (is_array($plugins)) {
+      return array_diff($plugins, array('wpemoji'));
     } else {
       return array();
     }
   }
-
 }

@@ -16,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 
 get_template_part( 'parts/theme/message', null, [
-    'label' => __( 'Stránka nenalezena', 'digi' ),
-    'title' => __( 'Tady nic není', 'digi' ),
-    'text'  => __( 'Obsah, který hledáte, na webu není. Vše podstatné najdete na úvodní stránce.', 'digi' ),
+    'label' => __( 'Stránka nenalezena', 'jos' ),
+    'title' => __( 'Tady nic není', 'jos' ),
+    'text'  => __( 'Obsah, který hledáte, na webu není. Vše podstatné najdete na úvodní stránce.', 'jos' ),
 ] );
 
 get_footer();
